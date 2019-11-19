@@ -63,7 +63,7 @@ my @groups=qx($cmd);
 # make sure defacto group is on sys
 my @def_check=grep {/^$defacto_group$/x } @groups;
 if(scalar(@def_check)!=1){
-    die("Bad group \"$defacto_group\", not found or many found\n");
+    die("Bad default group \"$defacto_group\", found ".scalar(@def_check)." matches (we need exactly one).\n");
 }
 
 # max count of things to process, really just used in testing
@@ -148,8 +148,8 @@ while ( my $line=<$CID> ) {
     my $pc_ex=$gr_lines[0];
     my @UC_check=grep {/^$pc_ex$/x} @groups;
     if(scalar(@UC_check)!=1){
-	if( ! exists($missing_groups->{$pc_ex}) ) { 
-	    print("Bad group \"$pc_ex\" in ($hf), not found or many found\n");
+	if( ! exists($missing_groups->{$pc_ex}) ) {
+	    print("Bad local project group \"$pc_ex\" in ($hf), found ".scalar(@UC_check)." matches (we need exactly one).\n");
 	}
 	push(@{$missing_groups->{$pc_ex}},$hf);
 	next;
