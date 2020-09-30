@@ -74,8 +74,8 @@ $lim='';
 # we'd have to play with this anytime we add a new localgroup, but we can
 # limit it for now to the last 24 hrs
 my $time_lim='';
-# "normal" mode the last 5 hrs
-$time_lim='-mtime -5h';
+# "normal" mode the last few hrs
+$time_lim='-mtime -6h';
 
 # had to use more advanced open command to discard find's stderr because its fequent permission denied errors
 # and we dont care in this context
